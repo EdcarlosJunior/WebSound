@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎵 Music Search</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🎵 Music Search</h1>
+
+    <!-- Formulário de busca -->
+    <form id="searchForm">
+      <input type="text" id="searchInput" placeholder="Digite artista ou música">
+      <button type="submit">Buscar</button>
+    </form>
+
+    <!-- Área onde os resultados da busca aparecem -->
+    <div id="results" class="results"></div>
+
+    <!-- Área onde as músicas favoritas são listadas -->
+    <h2>Favoritas</h2>
+    <div id="favorites" class="results"></div>
+
+    <!-- Player de preview de música -->
+    <div id="player" class="player hidden">
+      <p id="trackInfo"></p>
+      <audio id="audioPlayer" controls></audio>
+      <button id="closePlayer">Fechar</button>
+    </div>
+  </div>
+
+  <!-- Script principal -->
+  <script src="script.js"></script>
+</body>
+</html>

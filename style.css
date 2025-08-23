@@ -1,0 +1,97 @@
+/* ====== RESET E ESTILOS BASE ====== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f172a; /* Fundo escuro */
+  color: #e2e8f0;      /* Texto claro */
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ====== FORMULÁRIO DE BUSCA ====== */
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #0b1220;
+  color: #e2e8f0;
+}
+
+button {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: #e2e8f0;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.2);
+}
+
+/* ====== GRID DE RESULTADOS ====== */
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: #0b1220;
+  border: 1px solid #1f2a44;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.card h4 {
+  margin: 10px 0 5px;
+  font-size: 14px;
+}
+
+.card p {
+  margin: 0 0 10px;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* ====== ESTILO FAVORITOS ====== */
+.card.favorite {
+  border: 1px solid #facc15; /* Destaque amarelo */
+}
+
+.card button.favorite-btn {
+  background: #facc15;
+  color: #000;
+  font-weight: bold;
+}
+
+/* ====== PLAYER ====== */
+.player {
+  margin-top: 20px;
+  padding: 15px;
+  background: #1e293b;
+  border-radius: 12px;
+}
+
+.hidden {
+  display: none;
+}
