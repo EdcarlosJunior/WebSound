@@ -41,6 +41,15 @@ button:hover {
   filter: brightness(1.2);
 }
 
+.card, button {
+  transition: all 0.2s ease-in-out;
+}
+
+.card img:hover {
+  transform: scale(1.05);
+}
+
+
 /* ====== GRID DE RESULTADOS ====== */
 .results {
   display: grid;
@@ -84,13 +93,55 @@ button:hover {
   font-weight: bold;
 }
 
-/* ====== PLAYER ====== */
+/* ====== PLAYER FLUTUANTE ====== */
 .player {
-  margin-top: 20px;
-  padding: 15px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
   background: #1e293b;
-  border-radius: 12px;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  padding: 15px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  animation: fadeIn 0.3s ease-in-out;
 }
+
+/* Transição suave ao aparecer */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.player p {
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+}
+
+.player button {
+  background: #f87171;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.player button:hover {
+  background: #ef4444;
+}
+
+.hidden {
+  display: none;
+}
+
+
 
 .hidden {
   display: none;

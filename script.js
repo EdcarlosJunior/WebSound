@@ -107,6 +107,27 @@ function playTrack(track) {
   player.classList.remove('hidden');
 }
 
+// ====== PLAYER ARRASTÁVEL ====== //
+let isDragging = false;
+let offsetX, offsetY;
+
+player.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  offsetX = e.clientX - player.offsetLeft;
+  offsetY = e.clientY - player.offsetTop;
+});
+
+document.addEventListener('mouseup', () => isDragging = false);
+
+document.addEventListener('mousemove', (e) => {
+  if (isDragging) {
+    player.style.left = `${e.clientX - offsetX}px`;
+    player.style.top = `${e.clientY - offsetY}px`;
+    player.style.bottom = 'auto'; // remove fixo
+    player.style.right = 'auto';
+  }
+});
+
 // ====== EVENTO PARA FECHAR O PLAYER ====== //
 closePlayer.addEventListener('click', () => {
   audioPlayer.pause();
@@ -140,3 +161,25 @@ form.addEventListener('submit', async (e) => {
 
 // ====== INICIALIZA FAVORITOS AO CARREGAR A PÁGINA ====== //
 renderFavorites();
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const query = input.value.trim();
+  if (!query) return;
+  input.value = ''; // limpa campo
+  
+  document.getElementById('clearFavorites').addEventListener('click', () => {
+  if (confirm('Deseja realmente apagar todos os favoritos?')) {
+    favorites = [];
+    saveFavorites();
+    renderFavorites();
+  }
+});
+
+const rockTracks = data.results.filter(t => t.primaryGenreName === 'Rock');
+
+
+});
+
+
+
+
