@@ -213,3 +213,35 @@ button:hover {
 .hidden {
   display: none;
 }
+
+/* ====== RESPONSIVIDADE PARA CELULAR ====== */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column; /* Coloca a busca acima dos favoritos */
+  }
+
+  .container {
+    max-width: 100%;
+    margin-right: 0; /* Remove o espaço da lateral no mobile */
+    padding: 10px;
+  }
+
+  #favorites-sidebar {
+    position: relative; /* Deixa de ser fixo para não cobrir a tela */
+    width: 100%;
+    height: auto;
+    border-left: none;
+    border-top: 1px solid #1f2a44;
+  }
+
+  #favorites.favorites-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    max-height: 400px; /* Limita a altura da lista no celular */
+  }
+
+  .player {
+    width: 90%;
+    right: 5%;
+    left: 5%;
+  }
+}
