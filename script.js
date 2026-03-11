@@ -1,6 +1,6 @@
 // ====== SELECIONA ELEMENTOS DO DOM ====== //
 const form = document.getElementById('searchForm');
-const input = document.getElementById('searchInput');
+const input = document.getElementById('buscador');
 const resultsDiv = document.getElementById('results');
 const favoritesDiv = document.getElementById('favorites');
 const player = document.getElementById('player');

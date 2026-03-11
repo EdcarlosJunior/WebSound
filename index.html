@@ -3,30 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎵 Music Search</title>
+  <title>🎵 Web Sound</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="assets/websound-logo.png">  
 </head>
 <body>
-  <div class="container">
-    <h1>🎵 Music Search</h1>
-
-    <!-- Formulário de busca -->
-    <form id="searchForm">
-      <input type="text" id="searchInput" placeholder="Digite artista ou música">
-      <button type="submit">Buscar</button>
-    </form>
-
-    <!-- Área onde os resultados da busca aparecem -->
-    <div id="results" class="results"></div>
-
-    <!-- Área onde as músicas favoritas são listadas -->
+  <aside id="favorites-sidebar">
     <h2>Favoritas</h2>
-    <div id="favorites" class="results"></div>
+    
+    <div id="favorites" class="favorites-grid"></div>
     
     <button id="clearFavorites">🗑️ Limpar todos</button>
+  </aside>
 
+  <div class="container">
+    <img src="assets/WebSoundLg.svg" alt="WebSound Logo" class="main-logo">
+    <h1>Busque sua música</h1>
 
-    <!-- Player de preview de música -->
+    <form id="searchForm">
+      <input type="text" id="buscador" placeholder="Digite o nome do artista ou nome da música">
+      <button type="submit" id="buscar">Buscar</button>
+    </form>
+
+    <div id="results" class="results"></div>
+
     <div id="player" class="player hidden">
       <p id="trackInfo"></p>
       <audio id="audioPlayer" controls></audio>
@@ -34,7 +34,6 @@
     </div>
   </div>
 
-  <!-- Script principal -->
   <script src="script.js"></script>
 </body>
 </html>
