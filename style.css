@@ -254,4 +254,13 @@ button:hover {
     right: 5%;
     left: 5%;
   }
+
+  /* Ajuste específico para o botão Limpar Todos no Mobile */
+  #clearFavorites {
+    width: auto;           /* Deixa de ocupar 100% da largura */
+    min-width: 150px;      /* Define um tamanho mínimo confortável */
+    margin: 10px auto;     /* Centraliza o botão e adiciona espaço em cima/baixo */
+    padding: 8px 15px;     /* Diminui um pouco a altura interna */
+    font-size: 14px;       /* Ajusta o tamanho da fonte */
+  }
 }
