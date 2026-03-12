@@ -128,8 +128,6 @@ button:hover {
   padding: 20px;
   border-left: 1px solid #1f2a44;
   z-index: 100;
-
-  /* Organização vertical para fixar o botão */
   display: flex;
   flex-direction: column;
 }
@@ -141,24 +139,21 @@ button:hover {
   flex-shrink: 0;
 }
 
-/* Container de favoritos com scroll independente */
 #favorites.favorites-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  flex-grow: 1;      /* Ocupa o espaço central */
-  overflow-y: auto;  /* Ativa o scroll apenas aqui */
+  flex-grow: 1;
+  overflow-y: auto;
   margin-bottom: 15px;
   padding-right: 5px;
 }
 
-/* Estilo específico para cards dentro dos favoritos */
 #favorites.favorites-grid .card {
   padding: 8px;
   font-size: 12px;
 }
 
-/* Botão sempre visível no fundo */
 #clearFavorites {
   flex-shrink: 0;
   width: 100%;
@@ -217,17 +212,17 @@ button:hover {
 /* ====== RESPONSIVIDADE PARA CELULAR ====== */
 @media (max-width: 768px) {
   body {
-    flex-direction: column; /* Coloca a busca acima dos favoritos */
+    flex-direction: column;
   }
 
   .container {
     max-width: 100%;
-    margin-right: 0; /* Remove o espaço da lateral no mobile */
+    margin-right: 0;
     padding: 10px;
   }
 
   #favorites-sidebar {
-    position: relative; /* Deixa de ser fixo para não cobrir a tela */
+    position: relative;
     width: 100%;
     height: auto;
     border-left: none;
@@ -236,7 +231,22 @@ button:hover {
 
   #favorites.favorites-grid {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    max-height: 400px; /* Limita a altura da lista no celular */
+    max-height: 400px;
+  }
+
+  /* Ajuste específico para alinhar botões lado a lado no mobile */
+  .card-buttons {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .card-buttons button {
+    flex: 1;
+    font-size: 10px;
+    padding: 5px 2px;
+    margin: 0;
   }
 
   .player {
