@@ -41,14 +41,25 @@ form {
   font-size: medium;
 }
 
+#buscar {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: #e2e8f0;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
 button {
-  padding: 10px 15px;
+  padding: 5px 5px;
   border-radius: 8px;
   border: 1px solid #334155;
   background: #1e293b;
   color: #e2e8f0;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  margin: 3px;
 }
 
 button:hover {
@@ -80,6 +91,10 @@ button:hover {
   transition: transform 0.2s;
 }
 
+.card img:hover {
+  transform: scale(1.05);
+}
+
 .card h4 {
   margin: 10px 0 5px;
   font-size: 14px;
@@ -91,19 +106,15 @@ button:hover {
   color: #94a3b8;
 }
 
-/* ====== AJUSTE PARA BOTÕES LADO A LADO ====== */
-.card-buttons {
-  display: flex;
-  gap: 5px;
-  justify-content: center;
-  margin-top: 8px;
+.card.favorite {
+  border: 1px solid #facc15;
+  max-height: 300px;
 }
 
-.card-buttons button {
-  flex: 1;
-  padding: 5px 2px;
-  font-size: 10px;
-  white-space: nowrap;
+.card button.favorite-btn {
+  background: #facc15;
+  color: #000;
+  font-weight: bold;
 }
 
 /* ====== BARRA LATERAL (DIREITA) ====== */
@@ -111,40 +122,43 @@ button:hover {
   position: fixed;
   right: 0;
   top: 0;
-  height: 100vh;
+  height: 95vh;
   width: 275px;
   background: #0f172a;
   padding: 20px;
   border-left: 1px solid #1f2a44;
   z-index: 100;
+
+  /* Organização vertical para fixar o botão */
   display: flex;
   flex-direction: column;
 }
 
+#favorites-sidebar h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+/* Container de favoritos com scroll independente */
 #favorites.favorites-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  flex-grow: 1;
-  overflow-y: auto;
+  flex-grow: 1;      /* Ocupa o espaço central */
+  overflow-y: auto;  /* Ativa o scroll apenas aqui */
   margin-bottom: 15px;
+  padding-right: 5px;
 }
 
-/* Redução da altura do card nos favoritos */
-.favorites-grid .card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+/* Estilo específico para cards dentro dos favoritos */
+#favorites.favorites-grid .card {
   padding: 8px;
-  min-height: 180px;
+  font-size: 12px;
 }
 
-.favorites-grid .card img {
-  max-height: 80px;
-  object-fit: cover;
-}
-
-/* Botão Limpar Todos sempre no fundo */
+/* Botão sempre visível no fundo */
 #clearFavorites {
   flex-shrink: 0;
   width: 100%;
@@ -154,7 +168,13 @@ button:hover {
   border-radius: 8px;
   color: #f87171;
   font-weight: bold;
+  cursor: pointer;
   margin-top: auto;
+}
+
+#clearFavorites:hover {
+  background: #ef4444;
+  color: white;
 }
 
 /* ====== PLAYER FLUTUANTE ====== */
@@ -166,6 +186,7 @@ button:hover {
   background: #1e293b;
   border: 1px solid #334155;
   border-radius: 16px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
   padding: 15px;
   z-index: 1000;
   display: flex;
@@ -174,24 +195,39 @@ button:hover {
   gap: 10px;
 }
 
+.player p {
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+}
+
+.player button {
+  background: #f87171;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 .hidden {
   display: none;
 }
 
-/* ====== RESPONSIVIDADE (MOBILE) ====== */
+/* ====== RESPONSIVIDADE PARA CELULAR ====== */
 @media (max-width: 768px) {
   body {
-    flex-direction: column;
+    flex-direction: column; /* Coloca a busca acima dos favoritos */
   }
 
   .container {
     max-width: 100%;
-    margin-right: 0;
+    margin-right: 0; /* Remove o espaço da lateral no mobile */
     padding: 10px;
   }
 
   #favorites-sidebar {
-    position: relative;
+    position: relative; /* Deixa de ser fixo para não cobrir a tela */
     width: 100%;
     height: auto;
     border-left: none;
@@ -200,19 +236,12 @@ button:hover {
 
   #favorites.favorites-grid {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    max-height: 400px;
+    max-height: 400px; /* Limita a altura da lista no celular */
   }
 
   .player {
     width: 90%;
     right: 5%;
     left: 5%;
-  }
-
-  #clearFavorites {
-    width: auto;
-    max-width: 200px;
-    margin: 10px auto;
-    align-self: center;
   }
 }
