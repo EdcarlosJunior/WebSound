@@ -18,7 +18,6 @@ function saveFavorites() {
 // ====== RENDERIZA OS FAVORITOS NA TELA ====== //
 function renderFavorites() {
   favoritesDiv.innerHTML = '';
-
   if (favorites.length === 0) {
     favoritesDiv.innerHTML = '<p>Nenhuma música favoritada ainda.</p>';
     return;
@@ -28,7 +27,6 @@ function renderFavorites() {
     const card = document.createElement('div');
     card.className = 'card favorite';
 
-    // A estrutura abaixo permite que os botões fiquem lado a lado com seu novo CSS
     card.innerHTML = `
       <img src="${track.artworkUrl100.replace('100x100bb', '200x200bb')}" alt="${track.trackName}">
       <h4>${track.trackName}</h4>
@@ -73,8 +71,10 @@ function renderResults(tracks) {
       <img src="${track.artworkUrl100.replace('100x100bb', '200x200bb')}" alt="${track.trackName}">
       <h4>${track.trackName}</h4>
       <p>${track.artistName}</p>
-      <button class="play-btn">▶️ Preview</button>
-      <button class="favorite-btn">${isFavorite ? '★ Favorito' : '☆ Favoritar'}</button>
+      <div class="card-buttons">
+        <button class="play-btn">▶️ Preview</button>
+        <button class="favorite-btn">${isFavorite ? '★ Favorito' : '☆ Favoritar'}</button>
+      </div>
     `;
 
     card.querySelector('.play-btn').addEventListener('click', () => playTrack(track));
@@ -101,7 +101,6 @@ closePlayer.addEventListener('click', () => {
 });
 
 // ====== EVENTO PARA LIMPAR TODOS OS FAVORITOS ====== //
-// Movido para fora para funcionar independente da busca
 document.getElementById('clearFavorites').addEventListener('click', () => {
   if (confirm('Deseja realmente apagar todos os favoritos?')) {
     favorites = [];
@@ -132,6 +131,65 @@ form.addEventListener('submit', async (e) => {
   }
 });
 
+// ====== FUNÇÃO PARA LIMPAR RESULTADOS ====== //
+function clearResults() {
+  resultsDiv.innerHTML = '';
+  input.value = '';
+}
+
+// 1. Limpar automaticamente ao apagar o texto (Evento de Input)
+input.addEventListener('input', () => {
+  if (input.value.trim() === '') {
+    resultsDiv.innerHTML = '';
+  }
+});
+
+// 2. Limpar ao clicar no botão "Limpar"
+document.getElementById('limparBusca').addEventListener('click', clearResults);
+
+// ====== FUNÇÃO TOP 10 (RSS FEED) ====== //
+async function fetchTop10() {
+  const url = 'https://itunes.apple.com/br/rss/topsongs/limit=10/json';
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    const entries = data.feed.entry;
+    const carousel = document.getElementById('top10-carousel');
+
+    entries.forEach((entry, index) => {
+      const previewLink = entry.link.find(l => l.attributes.type === "audio/x-m4a") || entry.link[1];
+      
+      const track = {
+        trackId: entry.id.attributes['im:id'],
+        trackName: entry['im:name'].label,
+        artistName: entry['im:artist'].label,
+        artworkUrl100: entry['im:image'][2].label,
+        previewUrl: previewLink.attributes.href
+      };
+
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="rank-badge">${index + 1}º</div>
+        <img src="${track.artworkUrl100.replace('100x100bb', '200x200bb')}" alt="${track.trackName}">
+        <div class="card-content">
+            <h4>${track.trackName.substring(0, 20)}${track.trackName.length > 20 ? '...' : ''}</h4>
+            <p>${track.artistName}</p>
+            <div class="card-buttons">
+                <button class="play-btn">▶️ Preview</button>
+            </div>
+        </div>
+      `;
+
+      card.querySelector('.play-btn').addEventListener('click', () => playTrack(track));
+      carousel.appendChild(card);
+    });
+  } catch (error) {
+    console.error("Erro ao carregar Top 10:", error);
+  }
+}
+
 // ====== PLAYER ARRASTÁVEL ====== //
 let isDragging = false;
 let offsetX, offsetY;
@@ -153,5 +211,22 @@ document.addEventListener('mousemove', (e) => {
   }
 });
 
-// Inicialização ao carregar
-renderFavorites();
+
+
+// ====== INICIALIZAÇÃO ====== //
+window.onload = () => {
+  const carousel = document.getElementById('top10-carousel'); // Definido aqui para as setas usarem
+  const nextBtn = document.getElementById('nextBtn');
+  const prevBtn = document.getElementById('prevBtn');
+
+  nextBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: 300, behavior: 'smooth' }); // Corrigido de 'right' para 'left'
+  });
+
+  prevBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: -300, behavior: 'smooth' });
+  });
+
+  fetchTop10();
+  renderFavorites();
+};

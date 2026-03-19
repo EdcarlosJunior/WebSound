@@ -66,7 +66,86 @@ button:hover {
   filter: brightness(1.2);
 }
 
-/* ====== GRID DE RESULTADOS (BUSCA) ====== */
+#limparBusca {
+  background: #334155; /* Um tom de cinza para diferenciar do buscar */
+  color: #f87171;     /* Texto avermelhado para indicar limpeza */
+}
+
+#limparBusca:hover {
+  background: #475569;
+  filter: brightness(1.1);
+}
+
+/* ====== TOP 10 E CARROSSEL ====== */
+#top10-section {
+    position: relative;
+    padding: 0 45px; /* Espaço para as setas nas laterais */
+    margin-bottom: 20px;
+}
+
+.carousel-container {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding: 15px 5px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Oculta no Firefox */
+    -ms-overflow-style: none; /* Oculta no IE/Edge */
+}
+
+.carousel-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.carousel-container::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 10px;
+}
+
+.carousel-container .card {
+    min-width: 140px;
+    max-width: 140px;
+    flex-shrink: 0;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+/* ====== SETAS DE NAVEGAÇÃO ====== */
+.nav-btn {
+    position: absolute;
+    top: 60%; /* Alinhado ao centro dos cards */
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 110;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.nav-btn:hover {
+    background: #3b82f6;
+}
+
+.prev { left: 0; }
+.next { 
+    right: 40px; /* Altere o 0 para 15px para mover para a esquerda */
+}
+
+/* ====== GRID DE RESULTADOS ====== */
 .results {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -77,6 +156,7 @@ button:hover {
 
 /* ====== ESTILO DOS CARDS ====== */
 .card {
+  position: relative;
   background: #0b1220;
   border: 1px solid #1f2a44;
   border-radius: 12px;
@@ -106,18 +186,21 @@ button:hover {
   color: #94a3b8;
 }
 
-.card.favorite {
-  border: 1px solid #facc15;
-  max-height: 300px;
+.rank-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(59, 130, 246, 0.9);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 12px;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-.card button.favorite-btn {
-  background: #facc15;
-  color: #000;
-  font-weight: bold;
-}
-
-/* ====== BARRA LATERAL (DIREITA) ====== */
+/* ====== BARRA LATERAL ====== */
 #favorites-sidebar {
   position: fixed;
   right: 0;
@@ -132,13 +215,6 @@ button:hover {
   flex-direction: column;
 }
 
-#favorites-sidebar h2 {
-  margin-top: 0;
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-
 #favorites.favorites-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -146,16 +222,9 @@ button:hover {
   flex-grow: 1;
   overflow-y: auto;
   margin-bottom: 15px;
-  padding-right: 5px;
-}
-
-#favorites.favorites-grid .card {
-  padding: 8px;
-  font-size: 12px;
 }
 
 #clearFavorites {
-  flex-shrink: 0;
   width: 100%;
   padding: 12px;
   background: #1e293b;
@@ -164,7 +233,6 @@ button:hover {
   color: #f87171;
   font-weight: bold;
   cursor: pointer;
-  margin-top: auto;
 }
 
 #clearFavorites:hover {
@@ -172,7 +240,7 @@ button:hover {
   color: white;
 }
 
-/* ====== PLAYER FLUTUANTE ====== */
+/* ====== PLAYER ====== */
 .player {
   position: fixed;
   bottom: 20px;
@@ -190,30 +258,13 @@ button:hover {
   gap: 10px;
 }
 
-.player p {
-  font-size: 14px;
-  text-align: center;
-  margin: 0;
-}
+.hidden { display: none; }
 
-.player button {
-  background: #f87171;
-  border: none;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.hidden {
-  display: none;
-}
-
-/* ====== RESPONSIVIDADE PARA CELULAR ====== */
+/* ====== RESPONSIVIDADE ====== */
 @media (max-width: 768px) {
-  body {
-    flex-direction: column;
-  }
+  .nav-btn { display: none; }
+  
+  #top10-section { padding: 0 10px; }
 
   .container {
     max-width: 100%;
@@ -229,38 +280,9 @@ button:hover {
     border-top: 1px solid #1f2a44;
   }
 
-  #favorites.favorites-grid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    max-height: 400px;
-  }
-
-  /* Ajuste específico para alinhar botões lado a lado no mobile */
-  .card-buttons {
-    display: flex;
-    gap: 5px;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .card-buttons button {
-    flex: 1;
-    font-size: 10px;
-    padding: 5px 2px;
-    margin: 0;
-  }
-
   .player {
     width: 90%;
     right: 5%;
     left: 5%;
-  }
-
-  /* Ajuste específico para o botão Limpar Todos no Mobile */
-  #clearFavorites {
-    width: auto;           /* Deixa de ocupar 100% da largura */
-    min-width: 150px;      /* Define um tamanho mínimo confortável */
-    margin: 10px auto;     /* Centraliza o botão e adiciona espaço em cima/baixo */
-    padding: 8px 15px;     /* Diminui um pouco a altura interna */
-    font-size: 14px;       /* Ajusta o tamanho da fonte */
   }
 }

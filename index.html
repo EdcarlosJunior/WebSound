@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🎵 Web Sound</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="assets/websound-logo.png">  
+  <link rel="icon" type="image/png" href="assets/websound-logo.png">
 </head>
+
 <body>
   <aside id="favorites-sidebar">
     <h2>Favoritas</h2>
-    
+
     <div id="favorites" class="favorites-grid"></div>
-    
+
     <button id="clearFavorites">🗑️ Limpar todos</button>
   </aside>
 
   <div class="container">
     <img src="assets/WebSoundLg.svg" alt="WebSound Logo" class="main-logo">
+    <section id="top10-section">
+      <h2 class="section-title">🔥 Top 10 Brasil</h2>
+      <button class="nav-btn prev" id="prevBtn">❮</button>
+      <div id="top10-carousel" class="carousel-container"></div>
+      <button class="nav-btn next" id="nextBtn">❯</button>
+    </section>
     <h1>Busque sua música</h1>
 
     <form id="searchForm">
       <input type="text" id="buscador" placeholder="Digite o nome do artista ou nome da música">
       <button type="submit" id="buscar">Buscar</button>
+      <button type="button" id="limparBusca">Limpar</button>
     </form>
 
     <div id="results" class="results"></div>
@@ -36,4 +45,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>
