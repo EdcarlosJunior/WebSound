@@ -1,38 +1,46 @@
 🎵 WebSound - Music Search App
-Uma aplicação web moderna para busca de músicas utilizando a API do iTunes, agora com uma experiência otimizada para múltiplos dispositivos.
+Uma aplicação web moderna e dinâmica para busca de músicas utilizando a API do iTunes, agora com funcionalidades de descoberta e experiência de usuário (UX) aprimorada.
 
-📱 Novidades: Design Responsivo
-O foco desta última atualização foi a Experiência do Usuário (UX) em diferentes telas:
+🚀 Novidades da Versão 1.5
+🔥 Top 10 Brasil (Descoberta)
+Agora o WebSound recebe o usuário com as 10 músicas mais tocadas no Brasil em tempo real.
 
-Desktop: Mantém a barra lateral de favoritos fixa à direita para um fluxo de trabalho contínuo.
+Carrossel Horizontal: Interface moderna com rolagem suave (smooth scroll) para visualização rápida.
 
-Mobile: Interface adaptável onde a barra de favoritos se move para o final da página, evitando obstruir a busca principal.
+Navegação Inteligente: Adição de setas laterais para desktop e suporte a gestos touch para dispositivos móveis.
 
-Botões Otimizados: No celular, os controles de "Preview" e "Remover" ficam alinhados lado a lado, facilitando o toque.
+Ranking Dinâmico: Identificação visual da posição da música no ranking oficial.
 
-✨ Funcionalidades
-Busca em Tempo Real: Localize artistas ou músicas instantaneamente através do campo de busca.
+📱 Design Responsivo & UX
+O foco foi criar uma experiência fluida em qualquer dispositivo:
 
-Player de Preview: Ouça amostras das faixas antes de decidir se quer salvar.
+Desktop: Barra lateral de favoritos fixa para produtividade e player flutuante.
 
-Gestão de Favoritos: Sistema de curadoria pessoal para adicionar ou remover faixas com facilidade.
+Mobile: Layout adaptável onde o carrossel e a busca ocupam o centro da cena, com favoritos movidos para a base.
 
-Armazenamento Local: Seus favoritos são preservados mesmo após fechar o navegador, graças ao localStorage.
+Controle de Busca: Novo sistema que limpa os resultados automaticamente ao apagar o campo de pesquisa ou ao clicar no botão dedicado, mantendo a interface organizada.
 
-Limpeza Rápida: Botão dedicado para remover todos os favoritos de uma só vez.
+✨ Funcionalidades Principais
+Busca em Tempo Real: Localize artistas ou faixas instantaneamente através da iTunes Search API.
+
+Player de Preview: Ouça amostras das faixas diretamente na aplicação antes de favoritar.
+
+Gestão de Favoritos: Adicione ou remova músicas com um clique, com persistência de dados via localStorage.
+
+Limpeza Total: Botão dedicado para zerar sua lista de favoritos instantaneamente.
 
 🛠️ Tecnologias Utilizadas
-HTML5: Estrutura semântica da aplicação.
+HTML5: Estrutura semântica e acessível.
 
-CSS3: Design responsivo utilizando Flexbox, Grid e Media Queries.
+CSS3 Avançado: Uso de Flexbox e Grid para layout, além de Media Queries para total responsividade.
 
-JavaScript (ES6+): Lógica de busca, manipulação do DOM e integração com API.
+JavaScript (ES6+): Consumo de APIs assíncronas (fetch/await), manipulação dinâmica do DOM e lógica de persistência.
 
-iTunes Search API: Fornecimento de dados musicais atualizados em tempo real.
+iTunes API (Search & RSS): Integração com feeds de dados globais da Apple em tempo real.
 
 🚀 Como Executar
-Clone o repositório ou baixe os arquivos.
+Clone este repositório ou baixe os arquivos fonte.
 
 Abra o arquivo index.html em qualquer navegador moderno.
 
-No celular, acesse o link do GitHub Pages para ver a versão responsiva em ação.
+Para testar a experiência mobile, utilize as ferramentas de desenvolvedor do navegador (F12) ou acesse via link do GitHub Pages.
