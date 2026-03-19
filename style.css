@@ -216,12 +216,22 @@ button:hover {
 }
 
 #favorites.favorites-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  flex-grow: 1;
-  overflow-y: auto;
-  margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Define que as linhas tenham apenas o tamanho do conteúdo */
+    grid-template-rows: min-content; 
+    /* Garante que os cards se alinhem ao topo e não estiquem para preencher a altura */
+    align-content: start; 
+    gap: 10px;
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding-right: 5px;
+}
+
+.card.favorite {
+    height: fit-content;
+    align-self: start;
 }
 
 #clearFavorites {
