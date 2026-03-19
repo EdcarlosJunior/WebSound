@@ -215,18 +215,16 @@ button:hover {
   flex-direction: column;
 }
 
+/* No seu estilo geral para Desktop */
 #favorites.favorites-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* Define que as linhas tenham apenas o tamanho do conteúdo */
-    grid-template-rows: min-content; 
-    /* Garante que os cards se alinhem ao topo e não estiquem para preencher a altura */
-    align-content: start; 
-    gap: 10px;
-    flex-grow: 1;
-    overflow-y: auto;
-    margin-bottom: 15px;
-    padding-right: 5px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: min-content; /* Define altura mínima para as linhas */
+  align-content: start; /* Alinha os cards no topo, deixando o espaço vazio embaixo */
+  gap: 10px;
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 15px;
 }
 
 .card.favorite {
@@ -272,27 +270,54 @@ button:hover {
 
 /* ====== RESPONSIVIDADE ====== */
 @media (max-width: 768px) {
-  .nav-btn { display: none; }
+  /* Esconde as setas pois o scroll é via touch no telemóvel */
+  .nav-btn { 
+    display: none; 
+  }
   
-  #top10-section { padding: 0 10px; }
+  /* Ajusta o corpo para empilhar os elementos verticalmente */
+  body {
+    flex-direction: column;
+  }
 
+  /* Faz a área de busca e Top 10 ocupar a largura total */
   .container {
     max-width: 100%;
     margin-right: 0;
     padding: 10px;
   }
 
+  /* Move o sidebar para baixo da busca */
   #favorites-sidebar {
     position: relative;
     width: 100%;
     height: auto;
     border-left: none;
     border-top: 1px solid #1f2a44;
+    padding: 20px;
+    box-sizing: border-box;
   }
 
+  /* Ajusta a grid de favoritas para não esticar os cards */
+  #favorites.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-template-rows: min-content;
+    align-content: start;
+    gap: 10px;
+    max-height: none; /* Remove limite de altura no mobile se preferires */
+  }
+
+  /* Garante que o card de favorito termine logo após o botão */
+  .card.favorite {
+    height: fit-content;
+  }
+
+  /* Ajusta o player para não sumir no ecrã do telemóvel */
   .player {
     width: 90%;
     right: 5%;
     left: 5%;
+    bottom: 10px;
   }
 }

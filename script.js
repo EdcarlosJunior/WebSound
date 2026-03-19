@@ -215,9 +215,9 @@ document.addEventListener('mousemove', (e) => {
 
 // ====== INICIALIZAÇÃO ====== //
 window.onload = () => {
-  const carousel = document.getElementById('top10-carousel'); // Definido aqui para as setas usarem
   const nextBtn = document.getElementById('nextBtn');
   const prevBtn = document.getElementById('prevBtn');
+  const carousel = document.getElementById('top10-carousel'); // Adicione esta linha
 
   nextBtn.addEventListener('click', () => {
     carousel.scrollBy({ left: 300, behavior: 'smooth' }); // Corrigido de 'right' para 'left'
