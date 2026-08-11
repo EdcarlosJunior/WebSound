@@ -200,7 +200,7 @@ button:hover {
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-/* ====== BARRA LATERAL ====== */
+/* ====== BARRA LATERAL (DESKTOP) ====== */
 #favorites-sidebar {
   position: fixed;
   right: 0;
@@ -215,7 +215,7 @@ button:hover {
   flex-direction: column;
 }
 
-/* No seu estilo geral para Desktop */
+/* ====== GRID DE FAVORITOS NO DESKTOP ====== */
 #favorites.favorites-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -268,26 +268,26 @@ button:hover {
 
 .hidden { display: none; }
 
-/* ====== RESPONSIVIDADE ====== */
+/* ====== RESPONSIVIDADE: MOBILE (até 768px) ====== */
 @media (max-width: 768px) {
-  /* Esconde as setas pois o scroll é via touch no telemóvel */
+  /* Remove as setas de navegação no mobile porque o scroll é por toque */
   .nav-btn { 
     display: none; 
   }
   
-  /* Ajusta o corpo para empilhar os elementos verticalmente */
+  /* Empilha os elementos em coluna para caber melhor em telas pequenas */
   body {
     flex-direction: column;
   }
 
-  /* Faz a área de busca e Top 10 ocupar a largura total */
+  /* Ajusta o conteúdo principal para ocupar a largura total do mobile */
   .container {
     max-width: 100%;
     margin-right: 0;
     padding: 10px;
   }
 
-  /* Move o sidebar para baixo da busca */
+  /* Move a sidebar para baixo do conteúdo principal no mobile */
   #favorites-sidebar {
     position: relative;
     width: 100%;
@@ -298,22 +298,22 @@ button:hover {
     box-sizing: border-box;
   }
 
-  /* Ajusta a grid de favoritas para não esticar os cards */
+  /* Redefine a grid de favoritos para ajustar melhor ao layout móvel */
   #favorites.favorites-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     grid-template-rows: min-content;
     align-content: start;
     gap: 10px;
-    max-height: none; /* Remove limite de altura no mobile se preferires */
+    max-height: none; /* Remove limite de altura no mobile */
   }
 
-  /* Garante que o card de favorito termine logo após o botão */
+  /* Mantém os cards de favoritos com altura natural no mobile */
   .card.favorite {
     height: fit-content;
   }
 
-  /* Ajusta o player para não sumir no ecrã do telemóvel */
+  /* Ajusta o player para ficar visível e centralizado no mobile */
   .player {
     width: 90%;
     right: 5%;
